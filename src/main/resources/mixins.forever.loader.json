@@ -1,0 +1,11 @@
+{
+  "plugin": "we.devs.forever.loader.MixinPlugin",
+  "required": true,
+  "package": "we.devs.forever.mixin.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+
+  ],
+  "mixins": [
+  ]
+}

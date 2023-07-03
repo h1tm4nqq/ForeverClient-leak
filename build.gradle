@@ -1,0 +1,212 @@
+buildscript {
+ //   ext.kotlin_version = '1.6.10'
+    repositories {
+        jcenter()
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:4.+'
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        //classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.spongepowered.mixin'
+
+version project.modVersion
+group project.modGroup //http://maven.apache.org/guides/mini/guide-naming-conventions.html
+
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+    maven { url = 'http://maven-eclipse.github.io/maven' }
+    maven { url = 'https://jitpack.io' }
+}
+
+minecraft {
+    mappings channel: 'stable', version: '39-1.12'
+
+    accessTransformer = file('src/main/resources/forever_at.cfg')
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            property 'fml.coreMods.load', 'org.spongepowered.asm.launch.MixinTweaker'
+            property 'mixin.env.disableRefMap', 'true' // Disable refmap so we don't get trolled by Baritone
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'info'
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'TweakOrder': 2147483647,
+                'FMLCorePluginContainsFMLMod': 'true',
+                'FMLCorePlugin': 'we.devs.forever.loader.ForeverClientCoreModLoader',
+                'ForceLoadAsMod': 'false',
+                'FMLAT': 'forever_at.cfg',
+//                'Name': 'org/bouncycastle/LICENSE.class',
+//                'SHA-256-Digest': 'PnhJQA4AeaEHWTRey/cRjcMPTqmCTtDuOYiGffDFebo='
+        )
+    }
+
+    from {
+        configurations.addLib.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    exclude(
+            "fabric.mod.json",
+            "velocity-plugin.json",
+            "*.yml",
+            "META-INF/versions/**",
+            "**/*.RSA",
+            "**/*.SF",
+//            "**/module-info.class",
+            "**/LICENSE",
+            "**/*.txt",
+    )
+//    from "$buildDir/libs/ForeverClient-1.1.0.jar"
+//    into "C:/Program Files/кубы/instances/1.12.2/.minecraft/mods"
+}
+
+configurations {
+    addLib
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
+    addLib 'club.minnced:java-discord-rpc:2.0.2'
+    //addLib group: 'org.slick2d', name: 'slick2d-core', version: '1.0.1'
+    addLib group: "com.googlecode.json-simple", name: "json-simple", version: "1.1.1"
+//    addLib 'org.bouncycastle:bcprov-jdk18on:1.73'
+//    addLib files('libs/bc.jar')
+    addLib("org.spongepowered:mixin:0.8-SNAPSHOT") {
+        exclude module: 'log4j-core'
+        exclude module: 'guava'
+        exclude module: 'gson'
+        exclude module: 'commons-io'
+    }
+
+    annotationProcessor('org.spongepowered:mixin:0.8.3:processor') {
+        exclude module: 'gson'
+    }
+
+    implementation configurations.addLib
+}
+
+task getDeps(type: Copy) {
+    from sourceSets.main.runtimeClasspath
+    into 'runtime/'
+}
+
+
+processResources {
+    inputs.property 'version', project.version
+    inputs.property 'mcversion', project.mcVersion
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.mcVersion
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+    rename '(.+_at.cfg)', 'META-INF/$1'
+}
+
+mixin {
+    add sourceSets.main, 'mixins.forever.refmap.json'
+}
+
+task clientJar(type: Jar, dependsOn: jar) {
+    from(zipTree(jar.archivePath)) {
+        include "we/devs/forever/api/**"
+        include "we/devs/forever/client/**"
+        include "we/devs/forever/mixin/**"
+        include "we/devs/forever/main/**"
+        include "club/**"
+        include "junit/**"
+//        include "org/bouncycastle/**"
+//        include "org/hamcrest/**"
+//        include "org/json/**"
+//        include "org/junit/**"
+        include "mixins.forever.json"
+        include "mixins.forever.refmap.json"
+        include "assets/**"
+        exclude "we/devs/forever/loader/DevFMLCoreMod.class"
+        exclude "mixins.forever.loader.json"
+    }
+
+    manifest {
+        attributes(
+                'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'TweakOrder': 0,
+                'FMLCorePluginContainsFMLMod': 'true',
+                'FMLCorePlugin': 'we.devs.forever.loader.ForeverClientCoreModLoader',
+                'ForceLoadAsMod': 'true',
+                'FMLAT': 'forever_at.cfg'
+        )
+    }
+
+    baseName = ""
+    version = ""
+    classifier = "Foreverclient"
+}
+
+task loaderJar(type: Jar, dependsOn: jar) {
+    from(zipTree(jar.archivePath)) {
+        configurations.addLib.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+
+    manifest {
+        attributes(
+                'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'TweakOrder': 2147483647,
+                'FMLCorePluginContainsFMLMod': 'true',
+                'FMLCorePlugin': 'we.devs.forever.loader.ForeverClientCoreModLoader',
+                'ForceLoadAsMod': 'true',
+                'FMLAT': 'forever_at.cfg',
+//                'Name': 'org/bouncycastle/LICENSE.class',
+//                'SHA-256-Digest': 'PnhJQA4AeaEHWTRey/cRjcMPTqmCTtDuOYiGffDFebo='
+        )
+    }
+
+    exclude(
+            "we/devs/forever/api/**",
+            "we/devs/forever/client/**",
+            "we/devs/forever/mixin/**",
+            "we/devs/forever/main/**",
+            "club/**",
+            "junit/**",
+            "we/devs/forever/loader/DevFMLCoreMod.class",
+//            "org/hamcrest/**",
+//            "org/json/**",
+//            "org/junit/**",
+            "mixins.forever.refmap.json",
+            "mixins.forever.json",
+            "assets/**"
+    )
+
+    version = ""
+    classifier = "loader"
+    manifest = jar.manifest
+}
+
+build.dependsOn(clientJar, loaderJar)

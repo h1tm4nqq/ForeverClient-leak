@@ -1,0 +1,19 @@
+[
+  {
+    "modid": "forever",
+    "name": "ForeverClient",
+    "description": "ForeverClient for pvp and pve",
+    "version": "1.0.0",
+    "mcversion": "1.12.2",
+    "logoFile": "theforever.png",
+    "url": "https://discord.gg/wUJYtnTdSV",
+    "updateUrl": "https://discord.gg/FaufZrZDem",
+    "authorList": [
+      "Shadow_Fiend, N1ghtD3s3rt, HunterEagle_."
+    ],
+    "screenshots": [],
+    "dependencies": [
+      "A lot of shit pastes phobos and other clients."
+    ]
+  }
+]
