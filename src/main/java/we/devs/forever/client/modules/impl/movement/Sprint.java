@@ -69,12 +69,11 @@ class Sprint extends Module {
 
 
             if (!noWaterInstant.getValue() || (!mc.player.isInWater() && !mc.player.isInLava())) {
-                if (!bypassTime.passedMs(Step.bypassTime.getValue()) && Step.bypass.getValue() && Step.INSTANCE.isEnabled()) {
-                    strafe(event, Step.speed.getValue());
-                } else {
+//                if (!bypassTime.passedMs(Step.bypassTime.getValue()) && Step.bypass.getValue() && Step.INSTANCE.isEnabled()) {
+//                    strafe(event, Step.speed.getValue());
+//                } else {
                     strafe(event, speed.getValue());
-                }
-
+//                }
             }
         }
     }

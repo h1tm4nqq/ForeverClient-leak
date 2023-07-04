@@ -1,12 +1,4 @@
-//Deobfuscated with https://github.com/SimplyProgrammer/Minecraft-Deobfuscator3000 using mappings "D:\Rat Checker\1.12 stable mappings"!
 
-/*
- * Decompiled with CFR 0.151.
- *
- * Could not load the following classes:
- *  net.minecraft.util.math.BlockPos
- *  net.minecraft.util.math.Vec3d
- */
 package we.devs.forever.client.modules.impl.combat;
 
 import net.minecraft.util.math.BlockPos;
@@ -22,7 +14,6 @@ import we.devs.forever.api.util.player.MovementUtil;
 import we.devs.forever.client.modules.api.Module;
 import we.devs.forever.client.modules.impl.exploit.packetfly.PacketFly;
 import we.devs.forever.client.modules.impl.movement.LongJump;
-import we.devs.forever.client.modules.impl.movement.Step;
 import we.devs.forever.client.modules.impl.movement.fastfall.FastFall;
 import we.devs.forever.client.modules.impl.movement.speed.Speed;
 import we.devs.forever.client.setting.Setting;
@@ -37,7 +28,6 @@ public class Anchor
     private static final PacketFly PACKET_FLY = PacketFly.getInstance();
     private static final LongJump LONGJUMP = LongJump.INSTANCE;
     private static final Speed SPEED = Speed.INSTANCE;
-    private static final Step STEP = Step.INSTANCE;
     //    private static final SettingCache<SpeedMode, Setting<SpeedMode>, Speed> SPEED_MODE = Caches.getSetting<>(Speed.class, Setting.class, "Mode", SpeedMode.Instant);
     private final Setting<InputMode> inputMode = (new Setting<>("Input-Mode", InputMode.Keys));
     private final Setting<Float> pitch = (new Setting<Float>("Pitch", 90.0f, -90.0f, 90.0f));

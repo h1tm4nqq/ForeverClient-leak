@@ -287,7 +287,6 @@ class ModuleManager extends AbstractManager {
         modules.add(new Scaffold());
         modules.add(new Speed());
         modules.add(new Sprint());
-        modules.add(new Step());
         modules.add(new TickShift());
         modules.add(new PhaseWalk());
         modules.add(new FastFall());

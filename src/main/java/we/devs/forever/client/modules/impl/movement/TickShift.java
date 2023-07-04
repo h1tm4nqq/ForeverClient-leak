@@ -100,7 +100,7 @@ public class TickShift extends Module {
             ticksPassed = 0;
             timerUtil.reset();
             mc.getConnection().sendPacket(new CPacketPlayer.Position(Math.floor(mc.player.posX) + 0.5D,Math.floor(mc.player.posY),Math.floor(mc.player.posZ) + 0.5D,true));
-            if(autoStep.getValue()) Step.INSTANCE.setEnabled(true);
+//            if(autoStep.getValue()) Step.INSTANCE.setEnabled(true);
             if(blink.getValue())  moduleManager.getModuleByClass(Blink.class).enable();
             Command.sendMessage("Enabled bypass");
         }
@@ -194,7 +194,7 @@ public class TickShift extends Module {
         // if the amount of ticks passed is greater than or equal to the amount of ticks that need to pass for the module to disable, disable the module (duh)
         if (ticksPassed >= disableTicksBypass.getValue()) {
             ticksPassed = 0;
-            if(autoStep.getValue()) Step.INSTANCE.setEnabled(false);
+//            if(autoStep.getValue()) Step.INSTANCE.setEnabled(false);
 
             // decide whether to disable or reset the module
             if (disable.getValue()) {

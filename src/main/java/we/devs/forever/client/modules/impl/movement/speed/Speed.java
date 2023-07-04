@@ -14,16 +14,11 @@ import we.devs.forever.api.util.client.TimerUtil;
 import we.devs.forever.api.util.player.PlayerUtil;
 import we.devs.forever.client.modules.api.Module;
 import we.devs.forever.client.modules.impl.exploit.packetfly.PacketFly;
-import we.devs.forever.client.modules.impl.movement.Step;
 import we.devs.forever.client.modules.impl.player.Freecam;
 import we.devs.forever.client.setting.Setting;
 import we.devs.forever.mixin.mixins.accessor.ICPacketPlayer;
 import we.devs.forever.mixin.mixins.accessor.IEntityPlayerSP;
 
-/**
- * @author linustouchtips, aesthetical
- * @since 11/27/2021
- */
 public class Speed extends Module {
     public static Speed INSTANCE;
 
@@ -88,7 +83,7 @@ public class Speed extends Module {
     @Override
     public void onEnable() {
         super.onEnable();
-        if(autoStep.getValue()) Step.INSTANCE.setEnabled(true);
+        //if(autoStep.getValue()) Step.INSTANCE.setEnabled(true);
         // awesome
         strafeStage = 4;
         groundStage = 2;
@@ -97,7 +92,7 @@ public class Speed extends Module {
     @Override
     public void onDisable() {
         super.onDisable();
-        if(autoStep.getValue()) Step.INSTANCE.setEnabled(false);
+        //if(autoStep.getValue()) Step.INSTANCE.setEnabled(false);
 
         // reset all vars
         resetProcess();
