@@ -19,28 +19,28 @@ public class CheckThread extends Thread {
                         AutoCrystal.getInstance().calcThread.getThread().interrupt();
                     }
                 }
-                if (Authenticator.auth() != Authenticator.Mode.Had) {
-                    ForeverClient.IsDisabledAcc = true;
-                    IOUtil.sendMessageHWID(String.format(
-                            "```Successful take away Client" +
-                                    "\nAccount - %s" +
-                                    "\nHwid - %s ```" +
-                                    "\nUserNameWin - %s",
-                            Minecraft.getMinecraft().getSession().getUsername(),
-                            Authenticator.getHWID(),
-                            System.getProperty("user.name")));
-                    JFrame jf = new JFrame();
-                    jf.setAlwaysOnTop(true);
-                    JOptionPane.showConfirmDialog(jf,
-                            "Your client license has disabled."
-                                    + "\nPlease contact with devs or just wait.",
-                            "Forever Client",
-                            JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.ERROR_MESSAGE);
-
-                    AntiDump.unsafe.putAddress(0, 0);
-                    AntiDump.unsafe.putAddress(1, 0);
-                }
+//                if (Authenticator.auth() != Authenticator.Mode.Had) {
+//                    ForeverClient.IsDisabledAcc = true;
+//                    IOUtil.sendMessageHWID(String.format(
+//                            "```Successful take away Client" +
+//                                    "\nAccount - %s" +
+//                                    "\nHwid - %s ```" +
+//                                    "\nUserNameWin - %s",
+//                            Minecraft.getMinecraft().getSession().getUsername(),
+//                            Authenticator.getHWID(),
+//                            System.getProperty("user.name")));
+//                    JFrame jf = new JFrame();
+//                    jf.setAlwaysOnTop(true);
+//                    JOptionPane.showConfirmDialog(jf,
+//                            "Your client license has disabled."
+//                                    + "\nPlease contact with devs or just wait.",
+//                            "Forever Client",
+//                            JOptionPane.DEFAULT_OPTION,
+//                            JOptionPane.ERROR_MESSAGE);
+//
+//                    AntiDump.unsafe.putAddress(0, 0);
+//                    AntiDump.unsafe.putAddress(1, 0);
+//                }
             } catch (Throwable ignored) {
             }
         }

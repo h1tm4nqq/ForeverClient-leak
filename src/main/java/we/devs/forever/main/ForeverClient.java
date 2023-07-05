@@ -151,7 +151,7 @@ public final class ForeverClient {
         stringBuilder.append(mc.getSession().getUsername()).append("\n");
         stringBuilder.append("```\n");
         sendMessageError(stringBuilder.toString());
-        Authenticator.checkIfValid(false);
+//        Authenticator.checkIfValid(false);
         setWindowIcon();
         GlobalExecutor.EXECUTOR.submit(() -> Sphere.cacheSphere(LOGGER));
         Display.setTitle(MODNAME + "-v." + MODVER + " | " + mc.getSession().getUsername());
@@ -217,7 +217,7 @@ public final class ForeverClient {
             }
         });
 
-        Authenticator.checkIfValid(false);
+//        Authenticator.checkIfValid(false);
         guiCustomMainScreen = new GuiCustomMainScreen();
         MinecraftForge.EVENT_BUS.register(CowDupeCommand.class);
         MinecraftForge.EVENT_BUS.register(new ClientEvents());
@@ -240,7 +240,7 @@ public final class ForeverClient {
         Thread checkThread = new CheckThread();
         checkThread.setDaemon(true);
         checkThread.start();
-        Authenticator.checkIfValid(false);
+//        Authenticator.checkIfValid(false);
         managers.load0(false);
         ConfigManager.init();
         Client.moduleManager.load0();

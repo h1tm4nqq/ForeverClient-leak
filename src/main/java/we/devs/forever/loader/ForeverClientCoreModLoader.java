@@ -11,8 +11,6 @@ import org.spongepowered.asm.mixin.MixinEnvironment;
 import org.spongepowered.asm.mixin.Mixins;
 import sun.misc.URLClassPath;
 import we.devs.forever.loader.custompath.CustomClassPath;
-import we.devs.forever.loader.hwid.Authenticator;
-import we.devs.forever.loader.utils.IOUtil;
 
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -35,9 +33,9 @@ public class ForeverClientCoreModLoader implements IFMLLoadingPlugin {
     public ForeverClientCoreModLoader() {
 //        logger.info(decryptData("IhabVjDlp3t4JgEAzSXuIjowUpC4IfAMd8ruj0Y9M2k=", "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAENffUBDUb+BzjvwEMo0QNAr3Y2d/6M7AOOyV9xtvatYGkMfTnnizs1tKJpC3SSpZuvKU5rfiIITtWLJzbtLWsog==", "MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgOSM+a/reJTTUiTh5gL/iRm5PnAICB9jG0ui8ucolEcOgCgYIKoZIzj0DAQehRANCAAQ199QENRv4HOO/AQyjRA0CvdjZ3/ozsA47JX3G29q1gaQx9OeeLOzW0omkLdJKlm68pTmt+IghO1YsnNu0tayi"));
 
-        AntiDump.check();
-        logger.info("ForeverClient is checking HWID...");
-        Authenticator.checkIfValid(true);
+//        AntiDump.check();
+//        logger.info("ForeverClient is checking HWID...");
+//        Authenticator.checkIfValid(true);
         logger.info(FOREVERART);
 
         try {
@@ -49,10 +47,10 @@ public class ForeverClientCoreModLoader implements IFMLLoadingPlugin {
             }
         } catch (Throwable t) {
             try {
-                if (Authenticator.args[3].equalsIgnoreCase("beta")) {
-                    logger.info("Loading beta version of ForeverClient...");
-                    load(IOUtil.getUrl("https://pastebin.com/raw/N6sk6RXz")); //Beta
-                }
+//                if (Authenticator.args[3].equalsIgnoreCase("beta")) {
+//                    logger.info("Loading beta version of ForeverClient...");
+//                    load(IOUtil.getUrl("https://pastebin.com/raw/N6sk6RXz")); //Beta
+//                }
             } catch (Throwable ignored) {
                 logger.info("ForeverClient is loading...");
                 //https://drive.google.com/uc?export=download&confirm=no_antivirus&id=11WAlHlx2qQF6hxtWnVjw9y7bhQb45o0r - test

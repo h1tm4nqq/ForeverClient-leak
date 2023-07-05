@@ -57,6 +57,7 @@ public class Authenticator {
             "Has just been signed up for Blacked.com!"
     };
     public static Logger logger = LogManager.getLogger("ForeverClient");
+    public static String User = getHWID();
     public static String URL = "https://pastebin.com/raw/Xx0g3fPz";
 
 
@@ -176,7 +177,7 @@ public class Authenticator {
      * @return Whether the user is authed or not
      */
     public static Mode auth() throws Exception {
-        URL hwidList = new URL(URL);
+        URL hwidList = new URL(User);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(hwidList.openStream()));
         List<String> lines = bufferedReader.lines().collect(Collectors.toList());
         boolean hwid;

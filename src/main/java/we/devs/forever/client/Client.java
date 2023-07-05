@@ -69,9 +69,9 @@ class Client implements Util {
     protected static boolean fullNullCheck() {
         return mc.player == null || mc.world == null;
     }
-    public static void sendError(Throwable error) {
-        IOUtil.sendMessageError(error.getMessage());
-    }
+//    public static void sendError(Throwable error) {
+//        IOUtil.sendMessageError(error.getMessage());
+//    }
 
     public static void setPlayerList(PlayerList playerList1) {
         playerList = playerList1;
