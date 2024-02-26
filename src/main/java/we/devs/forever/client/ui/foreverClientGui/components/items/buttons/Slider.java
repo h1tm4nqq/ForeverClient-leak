@@ -12,7 +12,6 @@ import we.devs.forever.api.util.render.RenderUtil;
 import we.devs.forever.api.util.render.util.TextUtil;
 import we.devs.forever.client.Client;
 import we.devs.forever.client.modules.impl.client.ClickGui;
-import we.devs.forever.client.security.hwid.Authenticator;
 import we.devs.forever.client.setting.Setting;
 import we.devs.forever.client.ui.foreverClientGui.ForeverClientGui;
 import we.devs.forever.client.ui.foreverClientGui.components.Component;
@@ -116,10 +115,6 @@ public class Slider extends Button {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    return;
-                }
-                if(keyCode == Keyboard.KEY_C && (Keyboard.isKeyDown(Keyboard.KEY_RCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_LCONTROL))) {
-                    Authenticator.setClipboardString(currentString);
                     return;
                 }
                 if (ChatAllowedCharacters.isAllowedCharacter(typedChar)) {

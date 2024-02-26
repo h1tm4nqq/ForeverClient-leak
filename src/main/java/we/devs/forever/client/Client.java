@@ -14,7 +14,6 @@ import we.devs.forever.api.manager.impl.render.TextManager;
 import we.devs.forever.api.manager.impl.render.WayPointManager;
 import we.devs.forever.api.manager.impl.server.NCPManager;
 import we.devs.forever.api.util.Util;
-import we.devs.forever.loader.utils.IOUtil;
 
 public
 class Client implements Util {

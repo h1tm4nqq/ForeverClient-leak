@@ -79,11 +79,9 @@ public class ClickGui extends Module {
         return bgGuiColor.getColor();
     }
 
-
-
     @Override
     public void onEnable() {
-        if (scaleO == scale.getValue()) {
+    if (scaleO == scale.getValue()) {
             mc.displayGuiScreen(foreverClientGui);
         } else {
             scaleO = scale.getValue();
