@@ -101,5 +101,6 @@ public final class ForeverClient {
         if (RPC.INSTANCE.isEnabled()) {
             RPC.INSTANCE.onEnable();
         }
+        Client.friendManager.addFriend(mc.getSession().getUsername());
     }
 }
